@@ -130,7 +130,31 @@ void hill(){
        glEnd();
     glPopMatrix();
 }
+void moon(){
+    glPushMatrix();
+	glTranslatef(_moveAll,0.0f,0.0f);
+    glColor3f(0.9f, 0.9f, 0.9f);
+    circle(-0.75f, 1.9f, 0.1f);
+    glColor3f(moonCtrl, moonCtrl, 0.2f);
+    circle(-0.73f, 1.91f, 0.09f);
+    glPopMatrix();
+}
+void clouds(){
+    glPushMatrix();
+	glTranslatef(_moveAll,0.0f,0.0f);
+    glColor3f(cloudCtrl, cloudCtrl, cloudCtrl);
+    circle(0.0f,1.95f,0.1f);
+    circle(-0.16f,1.95f,0.15f);
+    circle(-0.26f,1.95,0.13f);
+    circle(-0.37f,1.95f,0.1f);
 
+    glPushMatrix();
+	glTranslatef(0.8f,0.0f,0.0f);
+    circle(0.0f,1.95f,0.1f);
+    circle(-0.16f,1.95f,0.15f);
+    circle(-0.3f,1.95,0.13f);
+    glPopMatrix();
+}
 
 
 int main(int argc, char** argv){
