@@ -3,6 +3,10 @@
 #include<GL/glut.h>
 #include<stdlib.h>
 
+float _moveAll = 0.0f;
+float nytground = 0.3;
+float moonCtrl = 0.2;
+float cloudCtrl = 0.7;
 
 void ground()
 {
