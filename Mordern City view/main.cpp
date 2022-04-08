@@ -1,172 +1,376 @@
-#include<windows.h>
-#include<GLUT/glut.h>
-#include<GL/glut.h>
-#include<stdlib.h>// checking info
-// Life of pie........................................................
-float _moveAll = 0.0f;
-float nytground = 0.3;
-float moonCtrl = 0.2;
-float cloudCtrl = 0.7;
+#include <iostream>
+using namespace std;
+#include<GL/gl.h>
+#include <stdio.h>
+#include<GL/gl.h>
+#include <GL/glut.h>
+#include <math.h>
+#include <Windows.h>
+#include <MMSystem.h>
 
-void ground()
+
+int _raining=1;
+int  night=1;
+int rainhappen=0;
+int _sunY=0;
+int nightCheck=3;
+int test=0;
+
+
+
+
+
+
+
+void normalSky()
+
 {
-    glBegin(GL_QUADS);          // near the road silver ground
-    glColor3f(0.5f, 0.5f, 0.5f);
-       glVertex2f(-1,0.5);
-       glVertex2f(1,0.5);
-       glVertex2f(1,0.4);
-       glVertex2f(-1,0.4);
-       glEnd();
 
-    glBegin(GL_QUADS);
-    glColor3f(0.0f, nytground, 0.0f);
-       glVertex2f(-1.0,1.1);
-       glVertex2f(1,1.1);
-       glVertex2f(1,0.5);
-       glVertex2f(-1.0,0.5);
-       glEnd();
+	glBegin(GL_POLYGON); //Sky
+	glColor3f(1,1,1);
+
+	glVertex2i(2000, 1500);
+	glVertex2i(0, 1500);
+
+	glColor3f(2.49, 1.87, 1.0);
+	glVertex2i(0, 970);
+	glVertex2i(2000, 970);
+	glEnd();
+
+
+
+
+    }
+
+
+
+
+
+void river() {
+
+
+	glBegin(GL_POLYGON); // River
+
+
+	glColor3f(0, 0, 0.189);
+	glVertex2i(0, 200);
+
+	if(rainhappen==1||rainhappen==1&&night==1)
+    {
+        glColor3f(0.663, 0.663, 0.663);
+    }
+
+    else if(night==1)
+    {
+        glColor3f(0.000, 0.000, 0.545);
+    }
+
+	else{glColor3f(1.4, .8, .949);}
+
+
+	glVertex2i(1000, 200);
+
+	glColor3f(0.106, 1.69, .918);
+	glVertex2i(2000, 200);
+
+    glColor3f(0.733, 0.886, .953);
+	glVertex2i(2000, 970);
+
+	glColor3f(0.733, 0.886, .953);
+	glVertex2i(1000, 970);
+
+	if(rainhappen==1||rainhappen==1&&night==1)
+    {
+        glColor3f(0.663, 0.663, 0.663);
+    }
+    if(test==1)
+    {
+        glColor3f(0.733, 0.886, .953);
+    }
+	glVertex2i(0, 970);
+
+	glEnd();
+    }
+
+
+
+
+void river_side()
+{
+   glColor3f(0.4, 0.4, 0.4);
+
+
 }
 
-void hill(){
-    glPushMatrix();
-	glTranslatef(_moveAll,0.0f,0.0f);
 
-    glBegin(GL_TRIANGLES);           //it is the most left hill 1
-    glColor3f(0.0f, hillCtrl, 0.0f);
-       glVertex2f(-2.2,1.1);
-       glVertex2f(-1.7,1.1);
-       glVertex2f(-1.9,1.5);
-       glEnd();
-    glBegin(GL_TRIANGLES);  //2
-       glVertex2f(-1.9,1.1);
-       glVertex2f(-1.5,1.1);
-       glVertex2f(-1.7,1.6);
-       glEnd();
-    glBegin(GL_TRIANGLES);  //3
-       glVertex2f(-1.8,1.1);
-       glVertex2f(-1.3,1.1);
-       glVertex2f(-1.45,1.7);
-       glEnd();
-    glBegin(GL_TRIANGLES);
-       glVertex2f(-1.45,1.1);
-       glVertex2f(-1.0,1.1);
-       glVertex2f(-1.3,1.6);
-       glEnd();
-    glBegin(GL_TRIANGLES);  //4
-       glVertex2f(-1.3,1.1);
-       glVertex2f(-0.9,1.1);
-       glVertex2f(-1.1,1.7);
-       glEnd();
-    glBegin(GL_TRIANGLES);  //5
-       glVertex2f(-1.1,1.1);
-       glVertex2f(-0.6,1.1);
-       glVertex2f(-0.9,1.5);
-       glEnd();
-    glBegin(GL_TRIANGLES);  //6
-       glVertex2f(-0.9,1.1);
-       glVertex2f(-0.5,1.1);
-       glVertex2f(-0.7,1.6);
-       glEnd();
-    glBegin(GL_TRIANGLES);  //7
-       glVertex2f(-0.75,1.1);
-       glVertex2f(-0.35,1.1);
-       glVertex2f(-0.5,1.7);
-       glEnd();
-    glBegin(GL_TRIANGLES); //8
-       glVertex2f(-0.5,1.1);
-       glVertex2f(-0.1,1.1);
-       glVertex2f(-0.3,1.5);
-       glEnd();
-    glBegin(GL_TRIANGLES); //9
-       glVertex2f(-0.3,1.1);
-       glVertex2f(0.05,1.1);
-       glVertex2f(-0.15,1.55);
-       glEnd();
-    glBegin(GL_TRIANGLES); //10
-       glVertex2f(-0.15,1.1);
-       glVertex2f(0.25,1.1);
-       glVertex2f(0.1,1.65);
-       glEnd();
-    glBegin(GL_TRIANGLES); //11
-       glVertex2f(0.1,1.1);
-       glVertex2f(0.45,1.1);
-       glVertex2f(0.25,1.8);
-       glEnd();
-    glBegin(GL_TRIANGLES);  //12
-       glVertex2f(0.2,1.1);
-       glVertex2f(0.6,1.1);
-       glVertex2f(0.45,1.65);
-       glEnd();
-    glBegin(GL_TRIANGLES);  //13
-       glVertex2f(0.35,1.1);
-       glVertex2f(0.85,1.1);
-       glVertex2f(0.65,1.55);
-       glEnd();
-    glBegin(GL_TRIANGLES);  //14
-       glVertex2f(0.65,1.1);
-       glVertex2f(1.15,1.1);
-       glVertex2f(0.85,1.75);
-       glEnd();
-    glBegin(GL_TRIANGLES);  //15
-       glVertex2f(0.85,1.1);
-       glVertex2f(1.25,1.1);
-       glVertex2f(1.05,1.65);
-       glEnd();
-    glBegin(GL_TRIANGLES);  //16
-       glVertex2f(1.05,1.1);
-       glVertex2f(1.45,1.1);
-       glVertex2f(1.25,1.5);
-       glEnd();
-    glBegin(GL_TRIANGLES);  //17
-       glVertex2f(1.25,1.1);
-       glVertex2f(1.65,1.1);
-       glVertex2f(1.45,1.75);
-       glEnd();
-    glBegin(GL_TRIANGLES);  //18
-       glVertex2f(1.45,1.1);
-       glVertex2f(1.85,1.1);
-       glVertex2f(1.6,1.6);
-       glEnd();
-    glBegin(GL_TRIANGLES);  //19
-       glVertex2f(1.6,1.1);
-       glVertex2f(2.2,1.1);
-       glVertex2f(1.9,1.7);
-       glEnd();
+
+ void road ()
+ {
+     glBegin(GL_QUADS);//only road
+
+	glColor3f(0.412, 0.412, 0.412);
+
+	glVertex2i(0,15);
+	glVertex2i(2000,50);
+	glVertex2i(2000,550);
+	glVertex2i(0,500);
+	glEnd();
+
+	// 3D testing
+
+
+
+	//making 3d lining front side
+
+
+
+	// white on under black
+
+	glBegin(GL_POLYGON);
+    glColor3f(0.0, 0.0, 0.0);
+	glVertex2i(150,2);
+	glVertex2i(1850,5);
+	glVertex2i(1850,45);
+	glVertex2i(150,17);
+	glEnd();
+
+	//black
+
+	glBegin(GL_POLYGON);
+	glColor3f(0.0, 0.0, 0.0);
+	glVertex2i(300,2);
+	glVertex2i(1700,5);
+	glVertex2i(1700,45);
+	glVertex2i(300,23);
+	glEnd();
+
+
+	glBegin(GL_POLYGON);// black
+	glColor3f(0.0, 0.0, 0.0);
+	glVertex2i(600,2);
+	glVertex2i(1400,5);
+	glVertex2i(1400,43);
+	glVertex2i(600,27);
+	glEnd();
+
+	glBegin(GL_POLYGON);//white
+	glColor3f(0.0, 0.0, 0.0);
+	glVertex2i(750,2);
+	glVertex2i(1250,3);
+	glVertex2i(1250,41);
+	glVertex2i(750,30);
+	glEnd();
+
+	glBegin(GL_POLYGON);//black
+	glColor3f(0.0, 0.0, 0.0);
+	glVertex2i(900,2);
+	glVertex2i(1100,3);
+	glVertex2i(1100,41);
+	glVertex2i(900,35);
+	glEnd();
+
+
+
+
+	// divider line from right side
+
+	glBegin(GL_POLYGON);
+	glColor3f(1.0,1.0,1.0);
+	glVertex2i(1800,250);
+	glVertex2i(1950,260);
+	glVertex2i(1930,270);
+	glVertex2i(1780,265);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+	glColor3f(1.0,1.0,1.0);
+	glVertex2i(1400,230);
+	glVertex2i(1550,240);
+	glVertex2i(1530,250);
+	glVertex2i(1380,245);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+	glColor3f(1.0,1.0,1.0);
+	glVertex2i(1000,210);
+	glVertex2i(1150,220);
+	glVertex2i(1130,230);
+	glVertex2i(980,225);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+	glColor3f(1.0,1.0,1.0);
+	glVertex2i(600,190);
+	glVertex2i(750,200);
+	glVertex2i(730,210);
+	glVertex2i(580,205);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+	glColor3f(1.0,1.0,1.0);
+	glVertex2i(200,170);
+	glVertex2i(350,180);
+	glVertex2i(330,190);
+	glVertex2i(180,185);
+    glEnd();
+
+
+    // footpath beside river
+
+
+    glBegin(GL_POLYGON);
+		glColor3f(0.0, 0.0, 0.0);
+	glVertex2i(0,500);
+	glVertex2i(2000,550);
+	glVertex2i(2000,600);
+	glVertex2i(0,550);
+    glEnd();
+
+    glBegin(GL_LINE_LOOP);
+	glColor3f(0.0,0.0,0.0);
+	glVertex2i(0,500);
+	glVertex2i(2000,550);
+	glVertex2i(2000,600);
+	glVertex2i(0,550);
+    glEnd();
+
+
+    // divder coloring Black
+
+    glBegin(GL_POLYGON);
+	glColor3f(0.0,0.0,0.0);
+	glVertex2i(150,505);
+	glVertex2i(1850,545);
+	glVertex2i(1850,595);
+	glVertex2i(150,555);
+    glEnd();
+
+    // divider coloring white
+
+    glBegin(GL_POLYGON);
+		glColor3f(0.0, 0.0, 0.0);
+	glVertex2i(300,505);
+	glVertex2i(1700,540);
+	glVertex2i(1700,595);
+	glVertex2i(300,560);
+    glEnd();
+
+    // divider coloring black 2
+
+    glBegin(GL_POLYGON);
+	glColor3f(0.0,0.0,0.0);
+	glVertex2i(450,503);
+	glVertex2i(1550,535);
+	glVertex2i(1550,595);
+	glVertex2i(450,565);
+    glEnd();
+
+    // divider coloring white 2
+
+    glBegin(GL_POLYGON);
+		glColor3f(0.0, 0.0, 0.0);
+	glVertex2i(600,508);
+	glVertex2i(1400,531);
+	glVertex2i(1400,593);
+	glVertex2i(600,569);
+    glEnd();
+
+    // divider coloring white 3
+
+    glBegin(GL_POLYGON);
+		glColor3f(0.0, 0.0, 0.0);
+	glVertex2i(900,513);
+	glVertex2i(1100,521);
+	glVertex2i(1100,585);
+	glVertex2i(900,578);
+    glEnd();
+
+
+ }
+
+void keyboard(unsigned char key, int x, int y)
+{
+    switch (key)
+    {
+      case 27:     // ESC key
+         exit(0);
+         break;
+    }
+
+
+
+}
+
+void myDisplay(void)
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+    glMatrixMode(GL_MODELVIEW);
+
+	normalSky();
+
+
+    glPushMatrix();
+
+  ;
     glPopMatrix();
+
+
+
+	river();
+
+
+
+	river_side();
+
+
+
+	road();
+
+
+
+if(rainhappen==1)
+    {
+
+
+       glPushMatrix();
+	   glTranslatef(0.0f ,_raining ,0.0f);
+//
+	   glPopMatrix();
+    }
+
+
+	glutPostRedisplay();
+	glutSwapBuffers();
 }
-void moon(){
-    glPushMatrix();
-	glTranslatef(_moveAll,0.0f,0.0f);
-    glColor3f(0.9f, 0.9f, 0.9f);
-    circle(-0.75f, 1.9f, 0.1f);
-    glColor3f(moonCtrl, moonCtrl, 0.2f);
-    circle(-0.73f, 1.91f, 0.09f);
-    glPopMatrix();
-}
-void clouds(){
-    glPushMatrix();
-	glTranslatef(_moveAll,0.0f,0.0f);
-    glColor3f(cloudCtrl, cloudCtrl, cloudCtrl);
-    circle(0.0f,1.95f,0.1f);
-    circle(-0.16f,1.95f,0.15f);
-    circle(-0.26f,1.95,0.13f);
-    circle(-0.37f,1.95f,0.1f);
 
-    glPushMatrix();
-	glTranslatef(0.8f,0.0f,0.0f);
-    circle(0.0f,1.95f,0.1f);
-    circle(-0.16f,1.95f,0.15f);
-    circle(-0.3f,1.95,0.13f);
-    glPopMatrix();
+
+
+void update(int value)
+{
+
+glutPostRedisplay(); //Notify GLUT that the display has changed
+
+	glutTimerFunc(20, update, 0); //Notify GLUT to call update again in 20 milliseconds
 }
 
 
-int main(int argc, char** argv){
-    glutInit(&argc, argv);
-    glutInitWindowSize(1100,850);
-    glutInitWindowPosition(50,50);
-    glutCreateWindow("Mordern City ");
+int main(int argc, char** argv)
+ {
 
-    glutMainLoop();
-    return 0;
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+	glutInitWindowSize(1350, 700);
+	glutCreateWindow("City");
+	gluOrtho2D(0.0, 2000.0, 0.0, 1500.0);
+	glutKeyboardFunc(keyboard);
+
+	glutDisplayFunc(myDisplay);
+
+	glutTimerFunc(20, update, 0);
+	glutFullScreen();
+	sndPlaySound("3.wav",SND_ASYNC);
+	glutMainLoop();
+
+
+	return 0;
 }
