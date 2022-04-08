@@ -1,8 +1,8 @@
 #include<windows.h>
 #include<GLUT/glut.h>
 #include<GL/glut.h>
-#include<stdlib.h>
-
+#include<stdlib.h>// checking info
+// Life of pie........................................................
 float _moveAll = 0.0f;
 float nytground = 0.3;
 float moonCtrl = 0.2;
