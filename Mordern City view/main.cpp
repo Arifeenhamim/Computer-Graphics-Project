@@ -6,7 +6,7 @@ using namespace std;
 #include <GL/glut.h>
 #include <math.h>
 #include <Windows.h>
-#include <MMSystem.h>
+
 
 
 int _raining=1;
@@ -19,15 +19,19 @@ int test=0;
 
 
 
+//Project main work
+//Project main work
 
 
+//Project main work
+//Project main work
 
 void normalSky()
 
 {
 
 	glBegin(GL_POLYGON); //Sky
-	glColor3f(1,1,1);
+	glColor3f(0,0,0);
 
 	glVertex2i(2000, 1500);
 	glVertex2i(0, 1500);
