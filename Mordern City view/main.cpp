@@ -18,13 +18,45 @@ int test=0;
 
 
 
+void sunMaking()
+{
+    if(rainhappen==0)
+    {
 
-//Project main work
-//Project main work
+
+    glBegin(GL_POLYGON); // 1st circle yellow
+    glColor3f(1.000, 1.000, 0.000);
+	for(int i=0;i<200;i++)
+	{
+		float pi=3.1416;
+		float A=(i*2*pi)/100;
+		float r=70;
+		float x = r * cos(A);
+		float y = r * sin(A);
+		glVertex2f(x+1000,y+1350 );
+	}
+	glEnd();
+
+	glBegin(GL_POLYGON);// 2nd circle red
+    glColor3f(255,0,0);
+	for(int i=0;i<200;i++)
+	{
+		float pi=3.1416;
+		float A=(i*2*pi)/100;
+		float r=65;
+		float x = r * cos(A);
+		float y = r * sin(A);
+		glVertex2f(x+1000,y+1350 );
+	}
+	glEnd();
+
+	glBegin(GL_POLYGON);
+
+	glEnd();
+    }
 
 
-//Project main work
-//Project main work
+}
 
 void normalSky()
 
@@ -315,7 +347,8 @@ void myDisplay(void)
 
     glPushMatrix();
 
-  ;
+   sunMaking();
+
     glPopMatrix();
 
 
