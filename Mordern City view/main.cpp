@@ -92,7 +92,6 @@ void update_plane1(int value)
 }
 
 
-
 void star()
 {
         glScalef(0.6,1,1);
@@ -872,7 +871,7 @@ void twin_tower(){
     //1st floor window of tower 1
     tower();
 
-    glPushMatrix();
+   glPushMatrix();
     glTranslatef(0.0,0.10,0);
     tower();
     glTranslatef(0.0,0.10,0);
