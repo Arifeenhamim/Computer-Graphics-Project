@@ -19,11 +19,13 @@ float _move_plane_1 = 0.00f;
 float _speed_plane_1 = 0.0025f;
 
 
-
 GLfloat i = 0.0f;
 GLfloat r = 0.0f;
 GLfloat position = 0.0f;
 GLfloat speed = 0.0025f;
+
+
+// cloud part 
 
 void update_cloud_1(int value) {
     if(_speed_cloud_1>1.00f || _speed_cloud_1<0.00f)
