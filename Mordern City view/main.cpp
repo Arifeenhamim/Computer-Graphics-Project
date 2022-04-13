@@ -1,4 +1,4 @@
-#include <GL/gl.h>
+#include <GL/gl.h> //checkinfo
 #include <GL/glut.h>
 #include <math.h>
 #include <stdio.h>
@@ -25,7 +25,7 @@ GLfloat position = 0.0f;
 GLfloat speed = 0.0025f;
 
 
-// cloud part 
+// cloud part
 
 void update_cloud_1(int value) {
     if(_speed_cloud_1>1.00f || _speed_cloud_1<0.00f)
