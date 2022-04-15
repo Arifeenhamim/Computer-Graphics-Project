@@ -156,7 +156,7 @@ void keyboard(unsigned char key, int x, int y) {
 
 }
 
-
+/// Sky
 
 void sky()
 {
@@ -338,21 +338,50 @@ void sky()
     }
 }
 
+                                                   ///Field
+
 void field_1()
 {
     //field 1
     glBegin(GL_QUADS);
 
+    if(night==true)
+    {
+         glColor3f(0.2,0.2,0.0);
+    }
+    else
   //  glColor3f(0.196, 0.804, 0.196);
-  glColor3f(0.1, 0.1, 0.1);
+
+
+    if(night==true)
+    {
+         glColor3f(0.2,0.2,0.0);
+    }
+    else
+    glColor3f(0.1, 0.1, 0.1);
     glVertex2f(1.0, -0.60);
 
+    if(night==true)
+    {
+         glColor3f(0.2,0.2,0.0);
+    }
+    else
     glColor3f(0.000, 1.000, 0.000);
     glVertex2f(-1.0, -0.60);
 
+    if(night==true)
+    {
+         glColor3f(0.2,0.2,0.0);
+    }
+    else
     glColor3f(0.486, 0.988, 0.000);
     glVertex2f(-1.0, 0.135);
 
+    if(night==true)
+    {
+        glColor3f(0.2,0.2,0.0);
+    }
+    else
     //glColor3f(0.498, 1.000, 0.000);
     glColor3f(0.1, 0.1, 0.1);
     glVertex2f(1.0, 0.135);
@@ -499,6 +528,9 @@ void cloud_struct()
 
 }
 
+
+                                     ///Cloud
+
 void cloud_left()
 {
     //Cloud on the left
@@ -605,15 +637,34 @@ void cloud_right()
 void river()
 {
     glBegin(GL_QUADS);
+    if(night==true)
+    {
+        glColor3f(0.0,0.0,0.1);
+    }
+    else
     glColor3f(0.000, 1.000, 1.000);
     glVertex2f(1.0, -0.60);
-
+   if(night==true)
+    {
+        glColor3f(0.0,0.0,0.5);
+    }
+    else
     glColor3f(0.686, 0.933, 0.933);
     glVertex2f(-1.0, -0.60);
 
+     if(night==true)
+    {
+        glColor3f(0.0,0.0,0.1);
+    }
+    else
     glColor3f(0.498, 1.000, 0.831);
     glVertex2f(-1.0, -1.0);
 
+    if(night==true)
+    {
+        glColor3f(0.0,0.0,0.5);
+    }
+    else
     glColor3f(0.282, 0.820, 0.800);
     glVertex2f(1.0, -1.0);
 
