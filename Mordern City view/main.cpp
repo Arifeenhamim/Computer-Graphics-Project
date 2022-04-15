@@ -17,7 +17,7 @@ float _speed_cloud_1 = 0.0025f;
 float _speed_cloud_2 = 0.0025f;
 float _move_plane_1 = 0.00f;
 float _speed_plane_1 = 0.0025f;
-
+bool night = false;
 
 GLfloat i = 0.0f;
 GLfloat r = 0.0f;
@@ -25,7 +25,7 @@ GLfloat position = 0.0f;
 GLfloat speed = 0.0025f;
 
 
-// cloud part 
+// cloud part
 
 void update_cloud_1(int value) {
     if(_speed_cloud_1>1.00f || _speed_cloud_1<0.00f)
@@ -138,12 +138,22 @@ void keyboard(unsigned char key, int x, int y) {
           _speed_plane_1-=0.0025f;
           update_plane1(0);
 
-          break;
+          break; }
 
-
-
-
+ if(key=='n')
+    {
+      night=true;
+      glutPostRedisplay();
     }
+    if(key=='o')
+    {
+      night=false;
+      glutPostRedisplay();
+    }
+
+
+
+
 }
 
 
@@ -613,6 +623,12 @@ void river()
 void planeWindow()
 {
    glBegin(GL_POLYGON);
+
+    if(night==true)
+    {
+        (glColor3f(1.0,1.0,1.0));
+    }
+    else
     glColor3f(0.00, 0.00, 0.0);
     glVertex2f(-0.1f, -0.1f);
     glVertex2f(-0.1f, 0.1f);
@@ -624,6 +640,12 @@ void planeWindow()
 void plane()
 {
     glBegin(GL_TRIANGLES);
+     if(night==true)
+    {
+        (glColor3f(0.1,0.0,0.3));
+    }
+    else
+
     glColor3f(0.5, 0.5, 0.5);
     glVertex2f(0.9f, 0.0f);
     glColor3f(0.9, 0.9, 1.0);
@@ -631,14 +653,26 @@ void plane()
     glColor3f(0.9, 0.9, 1.0);
     glVertex2f(0.5f, 0.0f);
     glEnd();
-    glBegin(GL_POLYGON);
+
+    glBegin(GL_POLYGON);          /// plane r body
+     if(night==true)
+    {
+        (glColor3f(0.1,0.0,0.3));
+    }
+    else
     glColor3f(1.00, 1.00, 1.0);
     glVertex2f(0.5f, 0.2f);
     glVertex2f(-0.4f, 0.2f);
     glVertex2f(-0.4f, 0.0f);
     glVertex2f(0.5f, 0.0f);
     glEnd();
-    glBegin(GL_POLYGON);
+    glBegin(GL_POLYGON);         /// plane r dana
+
+     if(night==true)
+    {
+        (glColor3f(0.1,0.0,0.3));
+    }
+    else
     glColor3f(0.000, 0.5, 1.000);
     glVertex2f(-0.4f, 0.2f);
     glVertex2f(-0.6f, 0.4f);
@@ -646,14 +680,34 @@ void plane()
     glVertex2f(-0.6f, 0.0f);
     glVertex2f(-0.4f, 0.0f);
     glEnd();
-    glBegin(GL_POLYGON);
+    glBegin(GL_POLYGON);         /// plane r pakha
+     if(night==true)
+    {
+        (glColor3f(0.1,0.0,0.3));
+    }
+    else
     glColor3f(0.000, 0.5, 1.000);
+
     glVertex2f(-0.1f, 0.2f);
     glVertex2f(-0.3f, 0.5f);
     glVertex2f(-0.2f, 0.5f);
     glVertex2f(0.2f, 0.2f);
     glEnd();
+
     glBegin(GL_POLYGON);
+     if(night==true)
+    {
+        (glColor3f(0.1,0.0,0.3));
+    }
+    else
+    glColor3f(0.000, 0.5, 1.000);
+
+   if(night==true)                         /// plane r pakha
+    {
+        (glColor3f(0.1,0.0,0.3));
+    }
+    else
+
     glColor3f(0.000, 0.5, 1.000);
     glVertex2f(-0.1f, 0.0f);
     glVertex2f(-0.3f, -0.3f);
@@ -674,10 +728,18 @@ void plane()
     glPopMatrix();
 }
 
+
 void red_building(){
     //Red Building
     glBegin(GL_QUADS);
+      if(night==true)
+    {
+        glColor3f(0.4,0.0,0.1);
+    }
+    else
+
     glColor3f(0.698, 0.133, 0.133);
+
     glVertex2f(-0.95, -0.05);
     glVertex2f(-0.75, -0.05);
     glVertex2f(-0.75, 0.45);
@@ -685,7 +747,12 @@ void red_building(){
 
     //Door of Red Building
     glBegin(GL_QUADS);
-    glColor3f(1.000, 0.894, 0.882);
+    if(night==true)
+    {
+        glColor3f(0.0,0.1,0.1);
+    }
+    else
+    glColor3f(1.000,1.0,1.0);
     glVertex2f(-0.90, -0.05);
     glVertex2f(-0.80, -0.05);
     glVertex2f(-0.80, 0.15);
@@ -693,13 +760,24 @@ void red_building(){
 
     //2 Window of Red Building
     glBegin(GL_QUADS);
-    glColor3f(1.0, 1.0, 1.0);;
+    if(night==true)
+    {
+        glColor3f(204.0,204.0,0.0);
+    }
+    else
+    glColor3f(1.0, 1.0, 1.0);
+
     glVertex2f(-0.93, 0.26);
     glVertex2f(-0.88, 0.26);
     glVertex2f(-0.88, 0.36);
     glVertex2f(-0.93, 0.36);
 
     glBegin(GL_QUADS);
+    if(night==true)
+    {
+        (glColor3f(204.0,204.0,0.0));
+    }
+    else
     glColor3f(1.0, 1.0, 1.0);
     glVertex2f(-0.82, 0.26);
     glVertex2f(-0.77, 0.26);
@@ -735,6 +813,11 @@ void blue_building(){
 
     //Door of blue building
     glBegin(GL_QUADS);
+    if(night==true)
+    {
+        glColor3f(0.0,0.1,0.1);
+    }
+    else
     glColor3f(1.000, 0.894, 0.882);
     glVertex2f(-0.63, -0.05);
     glVertex2f(-0.57, -0.05);
@@ -743,6 +826,11 @@ void blue_building(){
 
     //Little window of blue building
     glBegin(GL_QUADS);
+     if(night==true)
+    {
+        (glColor3f(204.0,204.0,0.0));
+    }
+    else
     glColor3f(1.0, 1.0, 1.0);
     glVertex2f(-0.53, 0.03);
     glVertex2f(-0.48, 0.03);
@@ -751,6 +839,12 @@ void blue_building(){
 
     //Big window of blue building
     glBegin(GL_QUADS);
+
+     if(night==true)
+    {
+        (glColor3f(204.0,204.0,0.0));
+    }
+    else
     glColor3f(0.686, 0.933, 0.933);
     glVertex2f(-0.63, 0.25);
     glVertex2f(-0.47, 0.25);
@@ -758,6 +852,11 @@ void blue_building(){
     glVertex2f(-0.63, 0.36);
 
     glBegin(GL_QUADS);
+     if(night==true)
+    {
+        (glColor3f(204.0,204.0,0.0));
+    }
+    else
     glColor3f(0.647, 0.165, 0.165);
     glVertex2f(-0.63, 0.31);
     glVertex2f(-0.63, 0.30);
@@ -765,6 +864,11 @@ void blue_building(){
     glVertex2f(-0.47, 0.31);
 
     glBegin(GL_QUADS);
+     if(night==true)
+    {
+        (glColor3f(204.0,204.0,0.0));
+    }
+    else
     glColor3f(0.647, 0.165, 0.165);
     glVertex2f(-0.555, 0.36);
     glVertex2f(-0.555, 0.25);
@@ -792,6 +896,11 @@ void blue_building(){
 void phone_box(){
     //Phone Box
     glBegin(GL_QUADS);
+     if(night==true)
+    {
+        glColor3f(0.3,0.0,0.2);
+    }
+    else
     glColor3f(1,0,0);
     glVertex2f(-0.41, -0.05);
     glVertex2f(-0.34, -0.05);
@@ -800,6 +909,11 @@ void phone_box(){
 
     //Window of Phone Box
     glBegin(GL_QUADS);
+     if(night==true)
+    {
+        (glColor3f(204.0,204.0,0.0));
+    }
+    else
     glColor3f(1,1,1);
     glVertex2f(-0.40, 0.02);
     glVertex2f(-0.35, 0.02);
@@ -832,6 +946,7 @@ void phone_box(){
     glEnd();
 
 }
+
 
 void tower(){
     glBegin(GL_QUADS);
@@ -957,6 +1072,11 @@ void twin_tower(){
 void house_1(){
     //House 1
     glBegin(GL_QUADS);
+       if(night==true)
+    {
+        glColor3f(0.1,0.4,0.2);
+    }
+    else
     glColor3f(0.400, 0.804, 0.667);
     glVertex2f(0.45, -0.03);
     glVertex2f(0.72, -0.03);
@@ -965,6 +1085,11 @@ void house_1(){
 
     //Door of House 1
     glBegin(GL_QUADS);
+    if(night==true)
+    {
+        glColor3f(0.0,0.0,0.0);
+    }
+    else
     glColor3f(1.000, 0.894, 0.882);
     glVertex2f(0.56, -0.03);
     glVertex2f(0.60, -0.03);
@@ -973,6 +1098,12 @@ void house_1(){
 
     //Window of House 1
     glBegin(GL_QUADS);
+    if(night==true)
+    {
+        glColor3f(0.0,0.0,0.0);
+    }
+    else
+
     glColor3f(1.000, 1.000, 1.000);
     glVertex2f(0.48, 0.03);
     glVertex2f(0.52, 0.03);
@@ -980,22 +1111,40 @@ void house_1(){
     glVertex2f(0.48, 0.10);
 
     glBegin(GL_QUADS);
+    if(night==true)
+    {
+        glColor3f(0.0,0.0,0.0);
+    }
+    else
     glColor3f(1.000, 1.000, 1.000);
     glVertex2f(0.64, 0.03);
     glVertex2f(0.68, 0.03);
     glVertex2f(0.68, 0.10);
     glVertex2f(0.64, 0.10);
 
-    //Basement of house 1
+
+    ///Basement of house 1
+
     glBegin(GL_QUADS);
+       if(night==true)
+    {
+        glColor3f(0.1,0.4,0.2);
+    }
+    else
     glColor3f(0.647, 0.165, 0.165);
     glVertex2f(0.44, -0.05);
     glVertex2f(0.73, -0.05);
     glVertex2f(0.73, -0.03);
     glVertex2f(0.44, -0.03);
 
-    //Roof of house 1
+    ///Roof of house 1
+
     glBegin(GL_QUADS);
+       if(night==true)
+    {
+         glColor3f(0.0,0.0,0.1);
+    }
+    else
     glColor3f(1.000, 0.855, 0.725);
     glVertex2f(0.44, 0.17);
     glVertex2f(0.73, 0.17);
@@ -1003,8 +1152,15 @@ void house_1(){
     glVertex2f(0.44, 0.19);
     glEnd();
 
-    //Roof of house 1
+
+ ///Roof of house 1
+
     glBegin(GL_POLYGON);
+       if(night==true)
+    {
+        glColor3f(0.0,0.0,0.1);
+    }
+    else
     glColor3f(1.000, 0.937, 0.835);
     glVertex2f(0.44, 0.19);
     glVertex2f(0.73, 0.19);
@@ -1015,6 +1171,11 @@ void house_1(){
 void house_2(){
     //House 2
     glBegin(GL_QUADS);
+      if(night==true)
+    {
+        glColor3f(0.4,0.0,0.1);
+    }
+    else
     glColor3f(0.804, 0.361, 0.361);
     glVertex2f(0.78, -0.03);
     glVertex2f(0.95, -0.03);
@@ -1023,6 +1184,12 @@ void house_2(){
 
     //Door of House 2
     glBegin(GL_QUADS);
+
+    if(night==true)
+    {
+        glColor3f(0.0,0.0,0.0);
+    }
+    else
     glColor3f(1.000, 1.000, 1.000);
     glVertex2f(0.87, -0.03);
     glVertex2f(0.92, -0.03);
@@ -1031,6 +1198,11 @@ void house_2(){
 
     //Window of House 2
     glBegin(GL_QUADS);
+    if(night==true)
+    {
+        glColor3f(0.0,0.0,0.0);
+    }
+    else
     glColor3f(1.000, 1.000, 1.000);
     glVertex2f(0.80, 0.03);
     glVertex2f(0.84, 0.03);
@@ -1039,14 +1211,25 @@ void house_2(){
 
     //Basement of house 2
     glBegin(GL_QUADS);
+      if(night==true)
+    {
+        glColor3f(0.4,0.0,0.1);
+    }
+    else
     glColor3f(0.647, 0.165, 0.165);
     glVertex2f(0.77, -0.05);
     glVertex2f(0.96, -0.05);
     glVertex2f(0.96, -0.03);
     glVertex2f(0.77, -0.03);
 
-    //Roof of house 2
+    ///Roof of house 2
+
     glBegin(GL_QUADS);
+      if(night==true)
+    {
+         glColor3f(0.0,0.0,0.1);
+    }
+    else
     glColor3f(1.000, 0.855, 0.725);
     glVertex2f(0.77, 0.17);
     glVertex2f(0.96, 0.17);
@@ -1054,14 +1237,23 @@ void house_2(){
     glVertex2f(0.77, 0.19);
     glEnd();
 
-    //Roof of house 2
+    ///Roof of house 2
+
     glBegin(GL_POLYGON);
+      if(night==true)
+    {
+          glColor3f(0.0,0.0,0.1);
+    }
+    else
     glColor3f(1.000, 0.937, 0.835);
     glVertex2f(0.77, 0.19);
     glVertex2f(0.96, 0.19);
     glVertex2f(0.86, 0.25);
     glEnd();
 }
+
+
+
 
 void airplane()
 {
@@ -1074,6 +1266,13 @@ void airplane()
     plane();
     glPopMatrix();
 }
+
+
+void BuildingAtNight()
+{
+
+}
+
 
 void myDisplay(void)
 {
