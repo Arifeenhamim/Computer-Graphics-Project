@@ -9,18 +9,18 @@
 #include <windows.h>
 #define PI 3.1415926535897323846
 
-//mnvhvhjvhjv
+
 
 float _move_sun = 1.00f;
 float _move_cloud_1 = 0.00f;
 float _move_cloud_2 = 0.00f;
-float _move_tank_1 = -1.2f;
+float _move_car1_1 = -1.2f;
 float _move_boat_1 = -1.2f;
 float _speed_cloud_1 = 0.0025f;
 float _speed_cloud_2 = 0.0025f;
 float _move_plane_1 = 0.00f;
 float _speed_plane_1 = 0.0025f;
-float _speed_tank_1 = 0.0025f;
+float _speed_car1_1 = 0.0025f;
 float _speed_boat_1 = 0.0025f;
 GLfloat positionRain = 0.0f;
 bool night = false;
@@ -32,8 +32,10 @@ GLfloat position = 0.0f;
 GLfloat speed = 0.0025f;
 
 
-void Rain(){
-if(rainday){
+void Rain()
+{
+if(rainday)
+    {
     glPushMatrix();
     glTranslatef(0.0, 0.5f, 0.0f);
 
@@ -76,7 +78,7 @@ if(rainday){
 // cloud part
 
 void update_cloud_1(int value) {
-    if(_speed_cloud_1>1.00f || _speed_cloud_1<0.00f)
+    if(_speed_cloud_1>1.00f || _speed_cloud_1<0.00f)    // loop means round kore move korte se plus time loop
     {
         _speed_cloud_1 = 0.0f;
     }
@@ -104,7 +106,7 @@ void update_cloud_2(int value) {
 	glutTimerFunc(20, update_cloud_2, 0); //Notify GLUT to call update again in 25 milliseconds
 }
 
-void update_sun(int value)
+void update_sun(int value)  // sun r position change with time
 {
     _move_sun -= 0.00055f;
     if(_move_sun+1.0 < -1.0)
@@ -139,27 +141,27 @@ void update_plane1(int value)
 	glutTimerFunc(20, update_plane1, 0);
 }
 
-void update_tank_t43(int value)
+void update_car1_t43(int value)
 {
-    _move_tank_1 -= 0.0025f;
-    if(_move_tank_1+1.1 < -1.0)
+    _move_car1_1 -= 0.0025f;
+    if(_move_car1_1+1.1 < -1.0)
     {
-        _move_tank_1 = 1.0;
+        _move_car1_1 = 1.0;
     }
     glutPostRedisplay(); //Notify GLUT that the display has changed
 
-	glutTimerFunc(20, update_tank_t43, 0); //Notify GLUT to call update again in 25 milliseconds
+	glutTimerFunc(20, update_car1_t43, 0); //Notify GLUT to call update again in 25 milliseconds
 }
-void update1_tank_t43(int value)
+void update1_car1_t43(int value)
 {
-    _move_tank_1 += 0.0025f;
-    if(_move_tank_1+1.1 < -1.0)
+    _move_car1_1 += 0.0025f;
+    if(_move_car1_1+1.1 < -1.0)
     {
-        _move_tank_1 = 1.0;
+        _move_car1_1 = 1.0;
     }
     glutPostRedisplay(); //Notify GLUT that the display has changed
 
-	glutTimerFunc(20, update1_tank_t43, 0); //Notify GLUT to call update again in 25 milliseconds
+	glutTimerFunc(20, update1_car1_t43, 0); //Notify GLUT to call update again in 25 milliseconds
 }
 
 void update_boat(int value)
@@ -196,12 +198,12 @@ void star()
 void specialKeys(int key, int x, int y) {
     switch (key) {
       case GLUT_KEY_UP:
-          update_tank_t43(0);
+          update_car1_t43(0);
 
 
           break;
       case GLUT_KEY_DOWN:
-          glutTimerFunc(20, update1_tank_t43, 0);
+          glutTimerFunc(20, update1_car1_t43, 0);
           break;
     }
 }
@@ -283,7 +285,7 @@ void keyboard(unsigned char key, int x, int y) {
 
 /// Sky
 
-void sky()
+void sky()      // sun r shate shate aky r colour change r code
 {
     if(_move_sun<=1.00f && _move_sun>=0.90f)
     {
@@ -387,7 +389,7 @@ void sky()
             float x = r * cos(A);
             float y = r * sin(A);
             glVertex2f(x,y );
-        }
+        }      // night a star r asar jonno
         glEnd();
         glPopMatrix();
 
@@ -516,7 +518,7 @@ void field_1()
     glEnd();}
 
 
-    void roadStrips()
+    void roadStrips()       // majer sada dak
 {
     glBegin(GL_QUADS);
     glColor3f(1.0, 1.0, 1.0);
@@ -526,7 +528,8 @@ void field_1()
     glVertex2f(-0.65, -0.30);
     glEnd();
 }
-    void road(){
+    void road()
+    {
     //Main road lane 1
     glBegin(GL_QUADS);
      if(night==true)
@@ -556,8 +559,8 @@ void field_1()
     roadStrips();
     glPopMatrix();
 }
-/// add tank 1,2, bort
-void TANK(){
+/// add car1 1,2, bort
+void car1(){
 
     //tank
 
@@ -565,11 +568,11 @@ void TANK(){
      glScalef(0.4, 0.4, 0.0);
          glTranslatef(0.0f,-0.4f, 0.0f);
 
-    glTranslatef(_move_tank_1,0.0f, 0.0f);
+    glTranslatef(_move_car1_1,0.0f, 0.0f);
 
 
 
-    //T - 34 Body part -2
+    //car1  Body part -2
     glBegin(GL_QUADS);
     glColor3ub(145,29,4);
     glVertex2f(0.3f, -0.1f);
@@ -578,7 +581,7 @@ void TANK(){
     glVertex2f(0.35f,  0.0f);
     glEnd();
 
-    //T - 34 Body part -3
+    //car1  Body part -3
     glBegin(GL_QUADS);
     glColor3ub(145,29,4);
     glVertex2f(0.23f, -0.1f);
@@ -587,7 +590,7 @@ void TANK(){
     glVertex2f(0.2f, -0.3f);
     glEnd();
 
-   ///T -34 Window -1
+   ///car1  Window -1
     glBegin(GL_QUADS);
     glColor3ub(210,224,190);
     glVertex2f(0.45f, -0.025f);
@@ -596,7 +599,7 @@ void TANK(){
     glVertex2f(0.45f, -0.10f);
     glEnd();
 
-    //T -34 Window -2
+    //car1  Window -2
     glBegin(GL_QUADS);
     glColor3ub(210,224,190);
     glVertex2f(0.55f, -0.025f);
@@ -607,7 +610,7 @@ void TANK(){
 
 
 
-    //T - 34 wheel -1
+    //car1  wheel -1
     int i;
     GLfloat x = 0.3f;
     GLfloat y = -0.326f;
@@ -649,7 +652,7 @@ void TANK(){
         );
     }
     glEnd();
-  //T - 34 wheel chain -2
+  //car1 wheel chain -2
     glLineWidth(8);
     glBegin(GL_LINES);
     glColor3ub(44,60,43);
@@ -660,7 +663,7 @@ void TANK(){
 
 
     ////////////
-/////Tank 2
+/////car1
 
       ///////
 
@@ -670,11 +673,11 @@ void TANK(){
      glScalef(0.4, 0.4, 0.0);
          glTranslatef(0.0f,-0.4f, 0.0f);
 
-    glTranslatef(_move_tank_1,0.0f, 0.0f);
+    glTranslatef(_move_car1_1,0.0f, 0.0f);
 
 
 
-    //T - 34 Body part -2
+    //car1 Body part -2
     glBegin(GL_QUADS);
     glColor3ub(210,191,209);
     glVertex2f(0.3f+0.8f, -0.1f);
@@ -683,7 +686,7 @@ void TANK(){
     glVertex2f(0.35f+0.8f,  0.0f);
     glEnd();
 
-    //T - 34 Body part -3
+    //car1 Body part -3
     glBegin(GL_QUADS);
     glColor3ub(168,13,167);
     glVertex2f(0.23f+0.8f, -0.1f);
@@ -692,7 +695,7 @@ void TANK(){
     glVertex2f(0.2f+0.8f, -0.3f);
     glEnd();
 
-   ///T -34 Window -1
+   ///car1  Window -1
     glBegin(GL_QUADS);
     glColor3ub(210,224,190);
     glVertex2f(0.45f+0.8f, -0.025f);
@@ -701,7 +704,7 @@ void TANK(){
     glVertex2f(0.45f+0.8f, -0.10f);
     glEnd();
 
-    //T -34 Window -2
+    //car1  Window -2
     glBegin(GL_QUADS);
     glColor3ub(210,224,190);
     glVertex2f(0.55f+0.8f, -0.025f);
@@ -712,7 +715,7 @@ void TANK(){
 
 
 
-    //T - 34 wheel -1
+    //car1wheel -1
   i;
 
    x = 0.3f+0.8f;
@@ -739,7 +742,7 @@ void TANK(){
     }
     glEnd();
 
-    //T - 34 wheel -4
+    //car1 wheel -4
     x = 0.55f+0.8f;
     y = -0.326f;
     radius = 0.06f;
@@ -759,7 +762,7 @@ void TANK(){
         );
     }
     glEnd();
-  //T - 34 wheel chain -2
+  //car1 wheel chain -2
     glLineWidth(8);
     glBegin(GL_LINES);
     glColor3ub(44,60,43);
@@ -789,7 +792,7 @@ void boat()
     glVertex2f(0.25f,  -0.9f-0.8f);
     glEnd();
 
-    ///upperpart
+    ///upper part
       glBegin(GL_POLYGON);
     glColor3ub(219,154,164);
     glVertex2f(0.3f, -0.7f-0.7f);
@@ -1905,7 +1908,7 @@ Rain();
    // house_2();
     lightblue_building2();
     road();
-  TANK();
+  car1();
     river();
     airplane();
     tree();
@@ -1939,8 +1942,8 @@ int main(int argc, char** argv)
     glutTimerFunc(20, update_cloud_1, 0);
     glutTimerFunc(20, update_cloud_2, 0);
 
-    glutTimerFunc(20, update_tank_t43, 0);
-    glutTimerFunc(20, update1_tank_t43, 0);
+    glutTimerFunc(20, update_car1_t43, 0);
+    glutTimerFunc(20, update1_car1_t43, 0);
 
     glutTimerFunc(20, update_plane, 0);
     glutTimerFunc(20, update_plane1, 0);

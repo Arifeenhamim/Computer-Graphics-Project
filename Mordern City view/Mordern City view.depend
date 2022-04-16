@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1650096377 source:c:\users\asus\desktop\computer-graphics-project\mordern city view\main.cpp
+1650102886 source:c:\users\asus\desktop\computer-graphics-project\mordern city view\main.cpp
 	<GL/gl.h>
 	<GL/glut.h>
 	<math.h>
