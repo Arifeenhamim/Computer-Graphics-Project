@@ -434,7 +434,7 @@ void field_1()
     roadStrips();
     glPopMatrix();
 }
-
+// need to add tankt
 void sun_circle()
 {
     glScalef(0.6,1,1);
