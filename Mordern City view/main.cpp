@@ -10,6 +10,7 @@
 #define PI 3.1415926535897323846
 
 //mnvhvhjvhjv
+//...........
 
 float _move_sun = 1.00f;
 float _move_cloud_1 = 0.00f;
