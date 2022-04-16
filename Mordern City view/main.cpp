@@ -14,13 +14,18 @@
 float _move_sun = 1.00f;
 float _move_cloud_1 = 0.00f;
 float _move_cloud_2 = 0.00f;
-
+float _move_tank_1 = -1.2f;
+float _move_boat_1 = -1.2f;
 float _speed_cloud_1 = 0.0025f;
 float _speed_cloud_2 = 0.0025f;
 float _move_plane_1 = 0.00f;
 float _speed_plane_1 = 0.0025f;
+float _speed_tank_1 = 0.0025f;
+float _speed_boat_1 = 0.0025f;
+GLfloat positionRain = 0.0f;
 bool night = false;
-
+bool rainday = false;
+float _rain = 0.0f;//float speed = 0.1f;
 GLfloat i = 0.0f;
 GLfloat r = 0.0f;
 GLfloat position = 0.0f;
@@ -93,6 +98,41 @@ void update_plane1(int value)
 	glutTimerFunc(20, update_plane1, 0);
 }
 
+void update_tank_t43(int value)
+{
+    _move_tank_1 -= 0.0025f;
+    if(_move_tank_1+1.1 < -1.0)
+    {
+        _move_tank_1 = 1.0;
+    }
+    glutPostRedisplay(); //Notify GLUT that the display has changed
+
+	glutTimerFunc(20, update_tank_t43, 0); //Notify GLUT to call update again in 25 milliseconds
+}
+void update1_tank_t43(int value)
+{
+    _move_tank_1 += 0.0025f;
+    if(_move_tank_1+1.1 < -1.0)
+    {
+        _move_tank_1 = 1.0;
+    }
+    glutPostRedisplay(); //Notify GLUT that the display has changed
+
+	glutTimerFunc(20, update1_tank_t43, 0); //Notify GLUT to call update again in 25 milliseconds
+}
+
+void update_boat(int value)
+{
+    _move_boat_1 += 0.0025f;
+    if(_move_boat_1+1.1 < -1.0)
+    {
+        _move_boat_1 = 1.0;
+    }
+    glutPostRedisplay(); //Notify GLUT that the display has changed
+
+	//glutTimerFunc(20, update_boat, 0); //Notify GLUT to call update again in 25 milliseconds
+}
+
 
 void star()
 {
@@ -111,6 +151,19 @@ void star()
         glEnd();
 }
 
+
+void specialKeys(int key, int x, int y) {
+    switch (key) {
+      case GLUT_KEY_UP:
+          update_tank_t43(0);
+
+
+          break;
+      case GLUT_KEY_DOWN:
+          glutTimerFunc(20, update1_tank_t43, 0);
+          break;
+    }
+}
 
 void keyboard(unsigned char key, int x, int y) {
     switch (key) {
@@ -154,9 +207,38 @@ void keyboard(unsigned char key, int x, int y) {
     }
 
 
+     if(key=='s')
+    {
+        glPushMatrix();
+    rainday = true;
+    Rain();
+    glPopMatrix();
+    glFlush();
+     glutPostRedisplay();
+    }
+
+     if(key=='l')
+    {
+        glPushMatrix();
+    rainday = false;
+    Rain();
+    glPopMatrix();
+    glFlush();
+     glutPostRedisplay();
+    }
+
+  if(key=='j')
+    {
+        _speed_boat_1+=0.0025f;
+          update_boat(0);
+
+    }
 
 
 }
+
+
+
 
 /// Sky
 
@@ -433,7 +515,10 @@ void field_1()
     roadStrips();
     glPopMatrix();
 }
+/// add tank 1,2, bort
 
+
+/// *********
 void sun_circle()
 {
     glScalef(0.6,1,1);
@@ -514,6 +599,7 @@ void sun()
         glPopMatrix();
     }
 }
+
 
 void cloud_struct()
 {
@@ -954,6 +1040,9 @@ void blue_building(){
     glEnd();
 }
 
+/// add tree
+
+
 void phone_box(){
     //Phone Box
     glBegin(GL_QUADS);
@@ -1338,7 +1427,7 @@ void myDisplay(void)
    // house_2();
     lightblue_building2();
     road();
-
+    //boat();
     river();
     airplane();
     glFlush();
